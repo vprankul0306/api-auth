@@ -22,41 +22,12 @@ An API to authenticate a user
     POST /api/auth/logout
 ```
 
+## Environment Variables
 
+To run this project, you will need to add the following environment variables to your .env file
 
+`MONGO_URI`
 
+`PORT`
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    main    markdown    1                                                                                                             TS    1:82 Top ▁▁
+`JWT_SECRET`
