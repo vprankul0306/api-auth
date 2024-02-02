@@ -1,31 +1,17 @@
 const express = require("express");
-const signupRoute = require("./features/signup/signup");
-const loginRoute = require("./features/login/login");
-const homeRoute = require("./features/home/home");
-const bodyParser = require("body-parser");
-const { connect } = require("./db/connection");
+const connect = require("./config/db");
+const authRouter = require("./routes/auth");
+require("dotenv").config();
 
 const app = express();
-connect();
-
-app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+const PORT = process.env.PORT || 8000;
 
-app.route("/api/signup").post((req, res) => {
-  signupRoute(req, res);
-});
+connect();
 
-app.route("/api/login").post((req, res) => {
-  loginRoute(req, res);
-});
+app.use(authRouter);
 
-app.route("/api/home").get((req, res) => {
-  homeRoute(req, res);
-});
-
-// app.post("/api/signup", signupRoute);
-
-app.listen(3000, () => {
-  console.log("Server started");
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
